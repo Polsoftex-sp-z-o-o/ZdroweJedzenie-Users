@@ -1,10 +1,10 @@
 package com.Polsoftex.Users.service;
 
-import com.Polsoftex.Users.model.Users;
+import com.Polsoftex.Users.model.User;
 
 import java.util.List;
 
 public interface IUsersService {
 	
-	List<Users> findAll();
+	List<User> findAll();
 }

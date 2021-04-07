@@ -1,6 +1,6 @@
 package com.Polsoftex.Users.service;
 
-import com.Polsoftex.Users.model.Users;
+import com.Polsoftex.Users.model.User;
 import com.Polsoftex.Users.repository.UsersRepository;
 
 import java.util.List;
@@ -15,8 +15,8 @@ public class UsersService implements IUsersService{
 	private UsersRepository repository;
 	
 	@Override
-	public List<Users> findAll() {
-		var users = (List<Users>) repository.findAll();
+	public List<User> findAll() {
+		var users = (List<User>) repository.findAll();
 		return users;
 	}
 }
