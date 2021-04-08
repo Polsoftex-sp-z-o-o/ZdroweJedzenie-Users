@@ -2,9 +2,13 @@ package com.Polsoftex.Users.controller;
 
 import com.Polsoftex.Users.model.User;
 import com.Polsoftex.Users.repository.UsersRepository;
+import com.Polsoftex.Users.service.UsersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,25 +22,49 @@ import java.util.Optional;
 @RestController
 public class UsersController {
 	
-	private final UsersRepository repository;
+	private final UsersService service;
 	
 	@Autowired
-	public UsersController(UsersRepository repository){
-		this.repository = repository;
+	public UsersController(UsersService service){
+		this.service = service;
 	}
 	
 	@GetMapping(value="/users/{userId}")
 	@ResponseBody
-	public ResponseEntity<User> findUser(@PathVariable Long userId){
-		Optional<User> user= repository.findById(userId);
+	public ResponseEntity<Object> findUser(@PathVariable Long userId){
+		Optional<User> user= service.findById(userId);
+		if(!user.isPresent()) {
+			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<>(user.get(), HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/users")
+	@PostMapping(value="/users", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<String> createUser (@RequestBody User newUser){
-		repository.save(newUser);
+	public ResponseEntity<String> createUser(@RequestBody User newUser){
+		service.save(newUser);
 		return new ResponseEntity<>("Created user.", HttpStatus.CREATED);
 	}
-
+	
+	@DeleteMapping(value="/users/{userId}")
+	@ResponseBody
+	public ResponseEntity<String> deleteUser(@PathVariable Long userId){
+		Optional<User> user= service.findById(userId);
+		if(!user.isPresent()) {
+			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+		}
+		service.deleteById(userId);
+		return new ResponseEntity<>("Deleted.", HttpStatus.NO_CONTENT);
+	}
+	
+	@PutMapping(value="/users/{userId}")
+	@ResponseBody
+	public ResponseEntity<String> createUser(@PathVariable Long userId, @RequestBody User updUser){
+		Optional<User> user= service.findById(userId);
+		if(!user.isPresent()) {
+			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+		}
+		service.update(userId, updUser);
+		return new ResponseEntity<>("Updated.", HttpStatus.OK);
+	}
 }

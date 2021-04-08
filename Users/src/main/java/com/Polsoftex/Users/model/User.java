@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Table(name="users")
 @Entity
@@ -20,17 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @AllArgsConstructor
 public class User {
 	
-	@JsonCreator
-	public User(@JsonProperty("username") String username, @JsonProperty("address") String address, @JsonProperty("password") String password, @JsonProperty("elevation") Boolean elevation) {
-		this.username = username;
-		this.address = address;
-		this.password = password;
-		this.elevation = elevation;
-	}
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	
 	private String username;
 
