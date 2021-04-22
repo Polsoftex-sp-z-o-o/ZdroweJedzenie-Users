@@ -12,6 +12,8 @@ public interface IUsersService {
 	User save(User newUser);
 	
 	Optional<User> findById(Long userId);
+
+	Optional<User> findByUsername(String username);
 	
 	void deleteById(Long userId);
 	

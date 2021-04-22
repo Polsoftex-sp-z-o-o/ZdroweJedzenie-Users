@@ -30,6 +30,12 @@ public class UsersService implements IUsersService{
 	public Optional<User> findById(Long userId){
 		return repository.findById(userId);
 	}
+
+
+	@Override
+	public Optional<User> findByUsername(String username){
+		return repository.findByUsername(username);
+	}
 	
 	@Override
 	public void deleteById(Long userId){
