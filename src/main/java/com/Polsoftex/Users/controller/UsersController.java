@@ -1,7 +1,6 @@
 package com.Polsoftex.Users.controller;
 
 import com.Polsoftex.Users.model.User;
-import com.Polsoftex.Users.repository.UsersRepository;
 import com.Polsoftex.Users.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class UsersController {
@@ -31,7 +30,7 @@ public class UsersController {
 	
 	@GetMapping(value="/users/{userId}")
 	@ResponseBody
-	public ResponseEntity<Object> findUser(@PathVariable Long userId){
+	public ResponseEntity<Object> findUser(@PathVariable UUID userId){
 		Optional<User> user= service.findById(userId);
 		if(!user.isPresent()) {
 			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
@@ -48,7 +47,7 @@ public class UsersController {
 	
 	@DeleteMapping(value="/users/{userId}")
 	@ResponseBody
-	public ResponseEntity<String> deleteUser(@PathVariable Long userId){
+	public ResponseEntity<String> deleteUser(@PathVariable UUID userId){
 		Optional<User> user= service.findById(userId);
 		if(!user.isPresent()) {
 			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
@@ -59,7 +58,7 @@ public class UsersController {
 	
 	@PutMapping(value="/users/{userId}")
 	@ResponseBody
-	public ResponseEntity<String> createUser(@PathVariable Long userId, @RequestBody User updUser){
+	public ResponseEntity<String> createUser(@PathVariable UUID userId, @RequestBody User updUser){
 		Optional<User> user= service.findById(userId);
 		if(!user.isPresent()) {
 			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
