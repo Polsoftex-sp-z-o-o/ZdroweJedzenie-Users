@@ -31,6 +31,12 @@ public class UsersService implements IUsersService{
 	public Optional<User> findById(UUID userId){
 		return repository.findById(userId);
 	}
+
+
+	@Override
+	public Optional<User> findByUsername(String username){
+		return repository.findByUsername(username);
+	}
 	
 	@Override
 	public void deleteById(UUID userId){

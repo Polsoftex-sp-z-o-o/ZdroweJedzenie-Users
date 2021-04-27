@@ -37,6 +37,16 @@ public class UsersController {
 		}
 		return new ResponseEntity<>(user.get(), HttpStatus.OK);
 	}
+
+	@GetMapping(value="/users/find/{username}")
+	@ResponseBody
+	public ResponseEntity<Object> findUser(@PathVariable String username){
+		Optional<User> user= service.findByUsername(username);
+		if(!user.isPresent()) {
+			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(user.get(), HttpStatus.OK);
+	}
 	
 	@PostMapping(value="/users", consumes = "application/json", produces = "application/json")
 	@ResponseBody
