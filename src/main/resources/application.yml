@@ -4,12 +4,11 @@ spring:
       ddl-auto: update  
     database-platform: org.hibernate.dialect.SQLServerDialect  
   datasource:  
-    url: jdbc:sqlserver://zdrowejedzenie.database.windows.net:1433;databaseName=zdrowejedzenie 
-    username: polsoftex-admin  
+    url: jdbc:sqlserver://zdrowejedzenie.database.windows.net:1433;databaseName=zdrowejedzenie
+    username: polsoftex-admin
     password: Haslo123
-	maxActive: 1
-	
+    maxActive: 1
 logging:
-	level:
-		org.hibernate.SQL: DEBUG
-		org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE
