@@ -4,6 +4,7 @@ import com.Polsoftex.Users.model.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface IUsersService {
 	
@@ -11,11 +12,11 @@ public interface IUsersService {
 	
 	User save(User newUser);
 	
-	Optional<User> findById(Long userId);
+	Optional<User> findById(UUID userId);
 
 	Optional<User> findByUsername(String username);
 	
-	void deleteById(Long userId);
+	void deleteById(UUID userId);
 	
-	User update(Long updId, User updUser);
+	User update(UUID updId, User updUser);
 }
