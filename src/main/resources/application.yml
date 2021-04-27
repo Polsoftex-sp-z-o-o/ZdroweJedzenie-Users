@@ -7,7 +7,7 @@ spring:
     url: jdbc:sqlserver://zdrowejedzenie.database.windows.net:1433;databaseName=zdrowejedzenie 
     username: polsoftex-admin  
     password: Haslo123
-	maxActive: 1
+    maxActive: 1
 	
 logging:
 	level:
