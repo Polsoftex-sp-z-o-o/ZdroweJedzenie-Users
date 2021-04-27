@@ -1,0 +1,1 @@
+CREATE TABLE users (id CHAR(36) PRIMARY KEY, username VARCHAR(36) UNIQUE, address VARCHAR(255), password VARCHAR(255), elevation BOOLEAN)
