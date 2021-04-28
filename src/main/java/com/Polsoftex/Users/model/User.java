@@ -28,11 +28,18 @@ public class User {
 	@Type(type = "org.hibernate.type.UUIDCharType")
 	private UUID id;
 	
-	@Column(name="email", unique=true)
+	@Column(name="email", unique=true, nullable = false)
 	private String email;
+
+	@Column(name="first_name")
+	private String firstName;
+
+	@Column(name="last_name")
+	private String lastName;
 
 	private String address;
 
+	@Column(nullable = false)
 	private String password;
 
 	@ManyToMany(mappedBy = "users")

@@ -18,6 +18,8 @@ public class CreateUser {
     private String address;
     private String password;
     private String confirmPassword;
+    private String firstName;
+    private String lastName;
 
     public boolean validatePassword(){
         if(confirmPassword == null)
@@ -28,7 +30,7 @@ public class CreateUser {
 
     public User buildEntity(){
         UUID entityId = UUID.randomUUID();
-        return new User(entityId,email, address, password, new HashSet<com.Polsoftex.Users.model.Role>());
+        return new User(entityId,email, firstName, lastName, address, password, new HashSet<com.Polsoftex.Users.model.Role>());
     }
 
 }
