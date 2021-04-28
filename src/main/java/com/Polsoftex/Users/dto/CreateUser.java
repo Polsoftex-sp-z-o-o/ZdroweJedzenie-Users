@@ -21,6 +21,7 @@ public class CreateUser {
     private String firstName;
     private String lastName;
 
+    //todo add further server side validation if needed (email, password)
     public boolean validatePassword(){
         if(confirmPassword == null)
             return false;

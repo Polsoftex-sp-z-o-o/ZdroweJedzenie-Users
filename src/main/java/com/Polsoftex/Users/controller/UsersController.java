@@ -48,7 +48,6 @@ public class UsersController {
 		}
 		return new ResponseEntity<>(user.get(), HttpStatus.OK);
 	}
-	
 
 	@PostMapping(value="/users", consumes = "application/json", produces = "application/json")
 	@ResponseBody
