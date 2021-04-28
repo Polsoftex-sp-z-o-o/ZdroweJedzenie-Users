@@ -1,5 +1,6 @@
 package com.Polsoftex.Users.controller;
 
+import com.Polsoftex.Users.dto.CreateUser;
 import com.Polsoftex.Users.model.User;
 import com.Polsoftex.Users.service.UsersService;
 
@@ -38,20 +39,22 @@ public class UsersController {
 		return new ResponseEntity<>(user.get(), HttpStatus.OK);
 	}
 
-	@GetMapping(value="/users/find/{username}")
+	@GetMapping(value="/users/find/{email}")
 	@ResponseBody
-	public ResponseEntity<Object> findUser(@PathVariable String username){
-		Optional<User> user= service.findByUsername(username);
+	public ResponseEntity<Object> findUser(@PathVariable String email){
+		Optional<User> user= service.findByEmail(email);
 		if(!user.isPresent()) {
 			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(user.get(), HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value="/users", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<String> createUser(@RequestBody User newUser){
-		service.save(newUser);
+	public ResponseEntity<String> createUser(@RequestBody CreateUser newUser){
+		if(!newUser.validatePassword())
+			return new ResponseEntity<>("Password does not match", HttpStatus.UNPROCESSABLE_ENTITY);
+		service.save(newUser.buildEntity());
 		return new ResponseEntity<>("Created user.", HttpStatus.CREATED);
 	}
 	

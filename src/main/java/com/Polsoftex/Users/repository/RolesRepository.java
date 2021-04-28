@@ -1,13 +1,14 @@
 package com.Polsoftex.Users.repository;
 
+import com.Polsoftex.Users.model.Role;
 import com.Polsoftex.Users.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.List;
+
 
 @Repository
-public interface UsersRepository extends CrudRepository<User, UUID>{
-    Optional<User> findByEmail(String username);
+public interface RolesRepository extends CrudRepository<Role, String> {
+    List<Role> findByDefaultRoleTrue();
 }
