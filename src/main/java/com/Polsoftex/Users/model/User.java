@@ -28,8 +28,8 @@ public class User {
 	@Type(type = "org.hibernate.type.UUIDCharType")
 	private UUID id;
 	
-	@Column(name="username", unique=true)
-	private String username;
+	@Column(name="email", unique=true)
+	private String email;
 
 	private String address;
 

@@ -34,8 +34,8 @@ public class UsersService implements IUsersService{
 
 
 	@Override
-	public Optional<User> findByUsername(String username){
-		return repository.findByUsername(username);
+	public Optional<User> findByEmail(String email){
+		return repository.findByEmail(email);
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class UsersService implements IUsersService{
 	@Override
 	public User update(UUID updId, User updUser) {
 		User myUser = repository.findById(updId).get();
-		myUser.setUsername(updUser.getUsername());
+		myUser.setEmail(updUser.getEmail());
 		myUser.setAddress(updUser.getAddress());
 		myUser.setPassword(updUser.getPassword());
 		myUser.setElevation(updUser.getElevation());
