@@ -51,7 +51,7 @@ public class UsersController {
 
 	@PostMapping(value="/users", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<String> createUser(@RequestBody CreateUser newUser){
+	public ResponseEntity<String> updateUser(@RequestBody CreateUser newUser){
 		if(!newUser.validatePassword())
 			return new ResponseEntity<>("Password does not match", HttpStatus.UNPROCESSABLE_ENTITY);
 		service.save(newUser.buildEntity());
@@ -71,12 +71,14 @@ public class UsersController {
 	
 	@PutMapping(value="/users/{userId}")
 	@ResponseBody
-	public ResponseEntity<String> createUser(@PathVariable UUID userId, @RequestBody User updUser){
+	public ResponseEntity<String> updateUser(@PathVariable UUID userId, @RequestBody CreateUser updUser){
 		Optional<User> user= service.findById(userId);
 		if(!user.isPresent()) {
 			return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
 		}
-		service.update(userId, updUser);
+		if(!updUser.validatePassword())
+			return new ResponseEntity<>("Password does not match", HttpStatus.UNPROCESSABLE_ENTITY);
+		service.update(userId, updUser.buildEntity());
 		return new ResponseEntity<>("Updated.", HttpStatus.OK);
 	}
 }
