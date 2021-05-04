@@ -60,6 +60,8 @@ public class UsersService implements IUsersService{
 		myUser.setEmail(updUser.getEmail());
 		myUser.setAddress(updUser.getAddress());
 		myUser.setPassword(updUser.getPassword());
+		myUser.setFirstName(updUser.getFirstName());
+		myUser.setLastName(updUser.getLastName());
 		return usersRepository.save(myUser);
 	}
 }
