@@ -5,7 +5,7 @@ spring:
     database-platform: org.hibernate.dialect.SQLServerDialect  
   datasource:  
     url: jdbc:sqlserver://zdrowejedzenie2.database.windows.net:1433;databaseName=zdrowejedzenie-users
-    username: polsoftex-admin@zdrowejedzenie 
+    username: polsoftex-admin@zdrowejedzenie2 
     password: Haslo123
     maxActive: 1
     
